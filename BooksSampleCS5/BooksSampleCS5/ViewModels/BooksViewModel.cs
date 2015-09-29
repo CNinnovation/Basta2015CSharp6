@@ -31,7 +31,7 @@ namespace BooksSample.ViewModels
             }
         }
 
-        // TODO
+        // TODO: 04 - expression bodied member: property
         public IEnumerable<Book> Books
         {
             get
@@ -41,14 +41,17 @@ namespace BooksSample.ViewModels
         } 
         public ICommand GetBooksCommand { get; }
 
-        // TODO: Elvis operator
+        // TODO: 08 - Elvis operator
         public async void OnGetBooks()
         {
-            (GetBooksCommand as DelegateCommand)?.RaiseCanExecuteChanged();
             await _booksService.LoadBooksAsync();
 
             _canGetBooks = true;
-            (GetBooksCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            DelegateCommand command = GetBooksCommand as DelegateCommand;
+            if (command != null)
+            {
+                command.RaiseCanExecuteChanged();
+            }
         }
 
         private bool _canGetBooks = true;

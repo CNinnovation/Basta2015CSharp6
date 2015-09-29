@@ -11,7 +11,7 @@ namespace BooksSample.Events
 
         private readonly int _bookId;
 
-        // TODO:  02 readonly auto property
+        // TODO:  02 - readonly auto property
         public int BookId
         {
             get { return _bookId; }
