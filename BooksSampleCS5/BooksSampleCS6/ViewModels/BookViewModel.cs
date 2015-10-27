@@ -73,19 +73,14 @@ namespace BooksSample.ViewModels
             }
         }
 
-        // TODO: 06 - exception filter
         private async void OnSpecialSave()
         {
             try
             {
                 _booksService.SpecialSave(Book);
             }
-            catch (TitleException ex)
+            catch (TitleException ex) when (ex.MyErrorCode == 99)
             {
-                if (ex.MyErrorCode != 99)
-                {
-                    throw;
-                }
                 await new MessageDialog("99").ShowAsync();
             }
             catch

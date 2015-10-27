@@ -36,7 +36,7 @@ namespace BooksSample.ViewModels
 
         public ICommand GetBooksCommand { get; }
 
-        // TODO: Elvis operator
+        // DONE
         public async void OnGetBooks()
         {
             (GetBooksCommand as DelegateCommand)?.RaiseCanExecuteChanged();
